@@ -1,4 +1,4 @@
-FROM alpine:3.18 AS builder
+FROM alpine:3.18
 
 ENV SETUP=/entrypoint.d/setup.sh
 
