@@ -1,0 +1,45 @@
+version: '3.9'
+services:
+  rabbitmq01:
+    image: rabbitmq:3.9.14-alpine
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      platforms:
+        - "linux/amd64"
+    hostname: rabbitmq01
+    restart: always
+    ports:
+      - "35672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: root
+      RABBITMQ_DEFAULT_PASS: final
+      RABBITMQ_MASTER_HOSTNAME: rabbitmq01
+      RABBITMQ_ERLANG_COOKIE: ef3657288c1ba91c
+      RABBITMQ_ENABLE_CLUSTER: true
+      RABBITMQ_CLUSTER_TYPE: ram
+      RABBITMQ_AWAIT_SECOND: 1
+    networks:
+      - myNetwork
+
+  rabbitmq02:
+    image: rabbitmq:3.9.14-alpine
+    hostname: rabbitmq02
+    restart: always
+    depends_on:
+      - rabbitmq01
+    environment:
+      RABBITMQ_DEFAULT_USER: root
+      RABBITMQ_DEFAULT_PASS: final
+      RABBITMQ_MASTER_HOSTNAME: rabbitmq01
+      RABBITMQ_ERLANG_COOKIE: ef3657288c1ba91c
+      RABBITMQ_ENABLE_CLUSTER: true
+      RABBITMQ_CLUSTER_TYPE: ram
+      RABBITMQ_AWAIT_SECOND: 1
+    networks:
+      - myNetwork
+
+networks:
+  myNetwork:
+    external: false
+    name: myNetwork
