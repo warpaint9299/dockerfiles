@@ -1,7 +1,7 @@
 version: '3.9'
 services:
-  wlog:
-    image: rsyslog:0.1
+  rsyslog:
+    image: rsyslog:latest
     build:
       context: ./
       dockerfile: Dockerfile

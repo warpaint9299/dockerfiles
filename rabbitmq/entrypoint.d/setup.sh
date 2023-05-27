@@ -3,6 +3,8 @@
 set -eux
 
 cd /entrypoint.d
+
+RABBITMQ_PKG=rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar.xz
 tar -xvf ${RABBITMQ_PKG} --strip-components 1 -C ${RABBITMQ_HOME}
 rm -rf ${RABBITMQ_PKG}
 
@@ -15,5 +17,6 @@ cd /usr/local/bin
 for i in $(ls -1); do ln -s /usr/local/bin/$i /usr/bin/$i; done
 
 ln -sf /entrypoint.d/entrypoint.sh /usr/local/bin/entrypoint.sh
+
 set +eux
 exit 0

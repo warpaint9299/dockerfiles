@@ -9,10 +9,10 @@ ENV RABBITMQ_HOME=/home/rabbitmq \
   RABBITMQ_ERLANG_COOKIE='' \
   RABBITMQ_AWAIT_SECOND=1 \
   SETUP=/entrypoint.d/setup.sh \
-  RABBITMQ_PKG=rabbitmq-server-generic-unix-3.9.14.tar
+  RABBITMQ_VERSION=3.9.14
 
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories && \
-  apk --no-cache update && apk --no-cache add sudo shadow tar gzip tzdata && \
+  apk --no-cache update && apk --no-cache add sudo shadow tar gzip xz tzdata && \
   ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
   groupadd -r -g 1000 rabbitmq && useradd --no-log-init -r -m -g 1000 -u 1000 rabbitmq
 
