@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+sudo -u \#1000 -E '/usr/sbin/logrotate' '-s' '/var/lib/logrotate/logrotate.status' '/etc/logrotate.conf'

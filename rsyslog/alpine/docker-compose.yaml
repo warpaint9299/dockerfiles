@@ -1,0 +1,23 @@
+version: '3.9'
+services:
+  rsyslog:
+    image: alpine/rsyslog:latest
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      platforms:
+        - "linux/amd64"
+    contriner_name: rsyslog
+    restart: on-failure
+    networks:
+      - myNetwork
+    ports:
+      - 127.0.0.1:1:1514:1514
+    volumes:
+      - ./logs:/var/log/rsyslog:z
+
+networks:
+  myNetwork:
+    external: false
+    name: myNetwork
+    attachable: true
