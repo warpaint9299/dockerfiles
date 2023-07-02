@@ -1,0 +1,7 @@
+version: '3.9'
+services:
+  orainstantclient:
+    image: oracle/instantclient:12.2.0.1
+    build:
+      context: ./
+      dockerfile: Dockerfile
