@@ -1,0 +1,12 @@
+version: '3.9'
+services:
+  miniarch:
+    image: miniarch
+    container_name: miniarch
+    ports:
+      - "5901:5901"
+    volumes:
+       - ./dwm:/home/user/.dwm
+       - ./wallpaper:/home/user/.wallpaper
+    user: user
+    command: ["/usr/sbin/vncserver", ":1"]
